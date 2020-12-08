@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace CookieChaos
 {
 	partial class MainWindow
 	{
@@ -47,37 +47,34 @@ namespace WindowsFormsApp1
 			this.CookieButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
 			this.CookieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
 			this.CookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.CookieButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.CookieButton.Location = new System.Drawing.Point(112, 67);
 			this.CookieButton.Name = "CookieButton";
 			this.CookieButton.Size = new System.Drawing.Size(301, 284);
 			this.CookieButton.TabIndex = 0;
-			this.CookieButton.Text = "COOKIES";
 			this.CookieButton.UseVisualStyleBackColor = false;
-			this.CookieButton.Click += new System.EventHandler(this.OnCookieClick);
 			// 
 			// ScoreLabel
 			// 
 			this.ScoreLabel.AutoSize = true;
-			this.ScoreLabel.Location = new System.Drawing.Point(172, 9);
+			this.ScoreLabel.Location = new System.Drawing.Point(97, 9);
 			this.ScoreLabel.Name = "ScoreLabel";
-			this.ScoreLabel.Size = new System.Drawing.Size(65, 13);
+			this.ScoreLabel.Size = new System.Drawing.Size(16, 13);
 			this.ScoreLabel.TabIndex = 1;
-			this.ScoreLabel.Text = "Score Value";
+			this.ScoreLabel.Text = "-1";
 			// 
 			// HighScoreLabel
 			// 
 			this.HighScoreLabel.AutoSize = true;
-			this.HighScoreLabel.Location = new System.Drawing.Point(172, 41);
+			this.HighScoreLabel.Location = new System.Drawing.Point(97, 33);
 			this.HighScoreLabel.Name = "HighScoreLabel";
-			this.HighScoreLabel.Size = new System.Drawing.Size(87, 13);
+			this.HighScoreLabel.Size = new System.Drawing.Size(16, 13);
 			this.HighScoreLabel.TabIndex = 2;
-			this.HighScoreLabel.Text = "HighScore Value";
+			this.HighScoreLabel.Text = "-1";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(119, 9);
+			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(47, 13);
 			this.label1.TabIndex = 3;
@@ -86,7 +83,7 @@ namespace WindowsFormsApp1
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(89, 41);
+			this.label2.Location = new System.Drawing.Point(12, 33);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(77, 13);
 			this.label2.TabIndex = 4;
@@ -94,7 +91,7 @@ namespace WindowsFormsApp1
 			// 
 			// ResetButton
 			// 
-			this.ResetButton.Location = new System.Drawing.Point(338, 28);
+			this.ResetButton.Location = new System.Drawing.Point(12, 376);
 			this.ResetButton.Name = "ResetButton";
 			this.ResetButton.Size = new System.Drawing.Size(75, 23);
 			this.ResetButton.TabIndex = 5;
@@ -115,6 +112,7 @@ namespace WindowsFormsApp1
 			this.Controls.Add(this.ScoreLabel);
 			this.Controls.Add(this.CookieButton);
 			this.DoubleBuffered = true;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(575, 450);
 			this.MinimizeBox = false;

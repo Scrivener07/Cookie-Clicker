@@ -1,83 +1,67 @@
 ﻿using System;
-using System.Drawing;
-using System.IO;
+using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace CookieChaos
 {
 	public partial class MainWindow : Form
 	{
-		int ClickCount = 0;
-		int HighScore = 0;
-		string HighScoreFile = "HighScore.txt";
+		/// <summary>
+		/// The data context for the game.
+		/// </summary>
+		public Game Context { get; private set; }
 
 
 		public MainWindow()
 		{
 			InitializeComponent();
 			Load += OnLoad;
+			FormClosing += OnClosing;
+
 			CookieButton.Click += OnCookieClick;
 			ResetButton.Click += OnResetClick;
-			Application.ApplicationExit += OnApplicationExit;
+
+			Context = new Game();
+			Context.PropertyChanged += OnGame_PropertyChanged;
 		}
 
 
 		private void OnLoad(object sender, EventArgs e)
 		{
-			ScoreLabel.Text = ClickCount.ToString();
+			Context.Reset();
+			Context.Read();
+		}
 
-			// Read the high score from file when the window loads.
-			if (File.Exists(HighScoreFile))
+
+		private void OnClosing(object sender, FormClosingEventArgs e)
+		{
+			Context.Save();
+		}
+
+
+		private void OnGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(Context.Score))
 			{
-				string text = File.ReadAllText(HighScoreFile);
-				HighScore = int.Parse(text);
-				HighScoreLabel.Text = text;
+				ScoreLabel.Text = Context.Score.ToString();
 			}
-			else
+			else if (e.PropertyName == nameof(Context.HighScore))
 			{
-				HighScore = 0;
-				HighScoreLabel.Text = HighScore.ToString();
+				HighScoreLabel.Text = Context.HighScore.ToString();
 			}
 		}
 
 
 		private void OnCookieClick(object sender, EventArgs e)
 		{
-			// Increase cookie score.
-			ClickCount += 1;
-
-			// Check for a high score.
-			if (ClickCount > HighScore)
-			{
-				// Set and display high score.
-				HighScore = ClickCount;
-				HighScoreLabel.Text = HighScore.ToString();
-			}
-
-			// Display the high score.
-			ScoreLabel.Text = ClickCount.ToString();
+			Context.Score += 1;
 		}
 
 
 		private void OnResetClick(object sender, EventArgs e)
 		{
-			ClickCount = 0;
-			ScoreLabel.Text = ClickCount.ToString();
-
-			HighScore = 0;
-			HighScoreLabel.Text = HighScore.ToString();
+			Context.Reset();
 		}
-
-
-		private void OnApplicationExit(object sender, EventArgs e)
-		{
-			// Save the high score to file before exiting.
-			using (var writer = File.CreateText(HighScoreFile))
-			{
-				writer.Write(HighScore);
-			}
-		}
-
 
 
 	}
